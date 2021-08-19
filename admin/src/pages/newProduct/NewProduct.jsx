@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { createMovie } from "../../contex/movieContex/apiCalls";
 import { MovieContext } from "../../contex/movieContex/MovieContext";
 import storage from "../../firebase";
@@ -12,6 +13,8 @@ export default function NewProduct() {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
+
+  const history = useHistory();
 
   const { dispatch } = useContext(MovieContext);
 
@@ -49,6 +52,7 @@ export default function NewProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
+    history.push("/movies");
   };
 
   const handleUpload = (e) => {
@@ -97,7 +101,7 @@ export default function NewProduct() {
           <label>Title</label>
           <input
             type="text"
-            placeholder="John wick"
+            placeholder="Movie Title"
             name="title"
             onChange={handleChange}
           />
@@ -157,7 +161,7 @@ export default function NewProduct() {
 
         <div className="addProductItem">
           <label>Is Series?</label>
-          <select name="active" id="isSeries">
+          <select name="isSeries" id="isSeries" onChange={handleChange}>
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>

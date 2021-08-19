@@ -12,9 +12,10 @@ export default function Featured({ type, setGenre }) {
         const res = await axios.get(`/movies/random?type=${type}`, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMTNkYzgyZmRkYWQzMDgwOWI0ZmZkZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTE4NTc3NiwiZXhwIjoxNjI5NjE3Nzc2fQ.og9DXwnN7WnOL2UBhFuHiX9WyfINJ1N9A6UYLZBsLfk",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMTNkYzgyZmRkYWQzMDgwOWI0ZmZkZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTI5MDU5NiwiZXhwIjoxNjI5NzIyNTk2fQ.vBJ7aa-aNryTWBU5CWdk8cvfCQvZ9fTOQyXSSRkqXEE",
           },
         });
+        setContent(res.data[0]);
       } catch (err) {
         console.log(err);
       }

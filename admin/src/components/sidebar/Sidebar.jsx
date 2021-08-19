@@ -2,11 +2,10 @@ import "./sidebar.css";
 import {
   LineStyle,
   Timeline,
-  TrendingUp,
   PermIdentity,
   PlayCircleOutline,
-  AttachMoney,
   BarChart,
+  List,
   MailOutline,
   DynamicFeed,
   ChatBubbleOutline,
@@ -32,10 +31,6 @@ export default function Sidebar() {
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -53,10 +48,12 @@ export default function Sidebar() {
                 Movies
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Transactions
-            </li>
+            <Link to="/lists" className="link">
+              <li className="sidebarListItem">
+                <List className="sidebarIcon" />
+                Lists
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports

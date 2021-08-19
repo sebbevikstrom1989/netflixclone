@@ -66,7 +66,7 @@ export default function MovieList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={movies}
+        rows={movies && movies}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
