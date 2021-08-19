@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import { Settings } from "@material-ui/icons";
 import { logout } from "../../contex/authContext/AuthActions";
 import { AuthContext } from "../../contex/authContext/AuthContex";
+import { useHistory } from "react-router-dom";
 
 export default function Topbar() {
   const { dispatch } = useContext(AuthContext);
+  const history = useHistory();
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push("/login");
   };
   return (
     <div className="topbar">
@@ -17,14 +20,6 @@ export default function Topbar() {
           <span className="logo">Netflix clone ADMIN</span>
         </div>
         <div className="topRight">
-          <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
-          </div>
           <div className="topbarIconContainer">
             <Settings />
           </div>
