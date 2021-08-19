@@ -1,9 +1,28 @@
-import { Link, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { updateList } from "../../contex/listContext/apiCalls";
+import { ListContext } from "../../contex/listContext/ListContext";
 import "./list.css";
 
 export default function List() {
+  const [edit, setEdit] = useState({});
+
   const location = useLocation();
   const list = location.list;
+  const history = useHistory();
+
+  const { dispatch } = useContext(ListContext);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setEdit({ ...edit, [e.target.name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateList(list._id, edit, dispatch);
+    history.push("/lists");
+  };
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -37,14 +56,31 @@ export default function List() {
         <form className="productForm">
           <div className="productFormLeft">
             <label>Movie Title</label>
-            <input type="text" placeholder={list.title} name="title" />
-            <label>Year</label>
-            <input type="text" placeholder={list.type} name="year" />
+            <input
+              type="text"
+              placeholder={list.title}
+              name="title"
+              onChange={handleChange}
+            />
+            <label>Type</label>
+            <input
+              type="text"
+              placeholder={list.type}
+              name="type"
+              onChange={handleChange}
+            />
             <label>Genre</label>
-            <input type="text" placeholder={list.genre} name="genre" />
+            <input
+              type="text"
+              placeholder={list.genre}
+              name="genre"
+              onChange={handleChange}
+            />
           </div>
           <div className="productFormRight">
-            <button className="productButton">Update</button>
+            <button className="productButton" onClick={handleSubmit}>
+              Update
+            </button>
           </div>
         </form>
       </div>
