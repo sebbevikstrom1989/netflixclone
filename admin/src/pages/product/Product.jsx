@@ -23,7 +23,6 @@ export default function Product() {
     updateMovie(movie._id, edit, dispatch);
     history.push("/movies");
   };
-  console.log(edit);
 
   return (
     <div className="product">

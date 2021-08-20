@@ -18,7 +18,7 @@ export default function ListList() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 250 },
+    { field: "_id", headerName: "ID", identity: true, width: 250 },
     { field: "title", headerName: "title", width: 250 },
     { field: "genre", headerName: "Genre", width: 150 },
     { field: "type", headerName: "type", width: 150 },
@@ -51,7 +51,7 @@ export default function ListList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={lists}
+        rows={lists && lists}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
